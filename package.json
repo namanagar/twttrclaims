@@ -1,21 +1,17 @@
 {
-  "name": "elastic-node",
-  "version": "1.0.0",
-  "description": "build a search engine using elastic search and node",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "node.js",
-    "elasticsearch",
-    "Vue.js"
-  ],
-  "author": "ogundipe samuel",
-  "license": "ISC",
+  "name": "twttrclaims",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "elasticsearch": "^13.3.1",
-    "express": "^4.16.3"
+    "@appbaseio/reactivesearch": "^2.6.7",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
