@@ -1,10 +1,11 @@
-
 import React, { Component } from 'react';
 import {
   ReactiveBase,
   DataSearch,
   SingleRange,
-  ResultList
+  ResultList,
+  MultiList,
+  DateRange
 } from '@appbaseio/reactivesearch';
 import './App.css';
 
@@ -58,7 +59,22 @@ class App extends Component {
                 { start: .6, end: 1, label: "★★★ & up" },
                 { start: .4, end: 1, label: "★★ & up" },
                 { start: .2, end: 1, label: "★ & up" },
+                { start: 0, end: 1, label: "Any" },
               ]}
+            />
+            <DateRange
+              componentId="dateFilter"
+              dataField="date"
+              title="Date Tweeted"
+            />
+            <MultiList
+              componentId="speakerFilter"
+              dataField="prefname.keyword"
+              title="Speakers"
+              showCheckbox={true}
+              showCount={true}
+              placeholder = "Filter by tweet authors"
+              sortBy="asc"
             />
           </div>
           <div className={"mainBar"}>
@@ -66,7 +82,7 @@ class App extends Component {
               componentId="results"
               dataField="prefname"
               react={{
-                "and": ["mainSearch", "ratingsFilter"]
+                "and": ["mainSearch", "ratingsFilter", "speakerFilter", "dateFilter"]
               }}
               pagination={true}
               size={20}
