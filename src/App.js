@@ -12,8 +12,11 @@ import './App.css';
 class App extends Component {
   render() {
     return (
+      //credentials shown here are read only so no security issues
       <ReactiveBase
-        url="http://localhost:9200/" app="social-media" type="twitter-claims"
+        app="social-media"
+        credentials= "M556bojZF:a6b1b01a-3e1e-48b0-8935-c340e157538d"
+        // for non-appbaseIO hosted instancesurl= "https://M556bojZF:a6b1b01a-3e1e-48b0-8935-c340e157538d@scalr.api.appbase.io"
         theme={{
           typography: {
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Noto Sans", "Ubuntu", "Droid Sans", "Helvetica Neue", sans-serif',
@@ -69,7 +72,7 @@ class App extends Component {
             />
             <MultiList
               componentId="speakerFilter"
-              dataField="prefname.keyword"
+              dataField="prefname.raw"
               title="Speakers"
               showCheckbox={true}
               showCount={true}
@@ -100,8 +103,8 @@ class App extends Component {
                 "resultStats": "result-stats"
               }}
               sortOptions={[
-                { dataField: "prefname.keyword", sortBy: "asc", label: "Speaker A->Z" },
-                { dataField: "prefname.keyword", sortBy: "desc", label: "Speaker Z->A" },
+                { dataField: "prefname.raw", sortBy: "asc", label: "Speaker A->Z" },
+                { dataField: "prefname.raw", sortBy: "desc", label: "Speaker Z->A" },
                 { dataField: "score", sortBy: "desc", label: "Claimbuster Score (High to low)" },
                 { dataField: "score", sortBy: "asc", label: "Claimbuster Score (Low to high)" }
               ]}
