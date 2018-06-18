@@ -6,6 +6,9 @@
 # testing
 /coverage
 
+#production - use gh-pages deploy script
+/build 
+
 # misc
 .DS_Store
 .env.local
