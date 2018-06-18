@@ -13,6 +13,21 @@ class App extends Component {
     return (
       <ReactiveBase
         url="http://localhost:9200/" app="social-media" type="twitter-claims"
+        theme={{
+          typography: {
+            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Noto Sans", "Ubuntu", "Droid Sans", "Helvetica Neue", sans-serif',
+            fontSize: '16px',
+          },
+          colors: {
+            textColor: '#14171A',
+            backgroundColor: '#E1E8ED',
+            primaryTextColor: '#fff',
+            primaryColor: '#2196F3',
+            titleColor: '#14171A',
+            alertColor: '#d9534f',
+            borderColor: '#666',
+          }
+        }}>
       >
         <div className="navbar">
           <div className="logo">
