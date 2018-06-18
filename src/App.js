@@ -89,8 +89,9 @@ class App extends Component {
               onData={(res) => (
                 {
                   "image": res.image,
-                  "title": res.prefname,
-                  "description": res.claim
+                  "title": res.prefname + " - @" + res.account.toString().toLowerCase(),
+                  "description": res.claim,
+                  "url": res.link
                 }
               )}
               className="result-data"
@@ -98,6 +99,12 @@ class App extends Component {
                 "image": "result-image",
                 "resultStats": "result-stats"
               }}
+              sortOptions={[
+                { dataField: "prefname.keyword", sortBy: "asc", label: "Speaker A->Z" },
+                { dataField: "prefname.keyword", sortBy: "desc", label: "Speaker Z->A" },
+                { dataField: "score", sortBy: "desc", label: "Claimbuster Score (High to low)" },
+                { dataField: "score", sortBy: "asc", label: "Claimbuster Score (Low to high)" }
+              ]}
             />
           </div>
         </div>
