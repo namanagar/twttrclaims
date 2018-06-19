@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   ReactiveBase,
   DataSearch,
-  SingleRange,
+  RangeSlider,
   ResultList,
   MultiList,
   DateRange
@@ -15,8 +15,8 @@ class App extends Component {
       //credentials shown here are read only so no security issues
       <ReactiveBase
         app="social-media"
-        credentials= "M556bojZF:a6b1b01a-3e1e-48b0-8935-c340e157538d"
-        // for non-appbaseIO hosted instancesurl= "https://M556bojZF:a6b1b01a-3e1e-48b0-8935-c340e157538d@scalr.api.appbase.io"
+        credentials= "wwmU5hu0p:8ef8c078-746d-4435-82a2-529726c17327"
+        // for non-appbaseIO hosted instancesurl= "https://wwmU5hu0p:8ef8c078-746d-4435-82a2-529726c17327@scalr.api.appbase.io"
         theme={{
           typography: {
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Noto Sans", "Ubuntu", "Droid Sans", "Helvetica Neue", sans-serif',
@@ -40,30 +40,49 @@ class App extends Component {
           <DataSearch
             componentId="mainSearch"
             dataField={["prefname", "speaker", "claim"]}
-            queryFormat="or"
-            placeholder="Search by speaker or claim"
+            queryFormat="and"
+            placeholder="Search by speaker and/or claim keywords"
             autosuggest={false}
-            fuzziness={2}
+            fuzziness={"AUTO"}
+            debounce={500}
             className="datasearch"
             innerClass={{
               "input": "searchbox",
               "list": "suggestionlist"
             }}
+            customQuery={
+              function (value, props) {
+                return {
+                  "multi_match": {
+                    "query": value,
+                    "type": "best_fields",
+                    "fields": ["prefname^3", "speaker", "claim^2"],
+                    "fuzziness": "AUTO",
+                    "zero_terms_query": "all",
+                    "tie_breaker": 0.35
+                  }
+                }
+              }
+            }
           />
         </div>
         <div className={"display"}>
           <div className={"leftSidebar"}>
-            <SingleRange
+            <RangeSlider
               componentId="ratingsFilter"
               dataField="score"
               title="Claimbuster Score"
-              data={[
-                { start: .8, end: 1, label: "★★★★ & up" },
-                { start: .6, end: 1, label: "★★★ & up" },
-                { start: .4, end: 1, label: "★★ & up" },
-                { start: .2, end: 1, label: "★ & up" },
-                { start: 0, end: 1, label: "Any" },
-              ]}
+              range={{
+                "start": 0,
+                "end": 100
+              }}
+              defaultSelected={{
+                "start": 50,
+                "end": 100
+              }}
+              showHistogram={true}
+              stepValue={1}
+              interval={5}
             />
             <DateRange
               componentId="dateFilter"
@@ -103,10 +122,11 @@ class App extends Component {
                 "resultStats": "result-stats"
               }}
               sortOptions={[
+                { dataField: "_score", sortBy: "desc", label: "Best Match" },
+                { dataField: "score", sortBy: "desc", label: "Claimbuster Score (High to low)" },
+                { dataField: "score", sortBy: "asc", label: "Claimbuster Score (Low to High)" },
                 { dataField: "prefname.raw", sortBy: "asc", label: "Speaker A->Z" },
                 { dataField: "prefname.raw", sortBy: "desc", label: "Speaker Z->A" },
-                { dataField: "score", sortBy: "desc", label: "Claimbuster Score (High to low)" },
-                { dataField: "score", sortBy: "asc", label: "Claimbuster Score (Low to high)" }
               ]}
             />
           </div>
