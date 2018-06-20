@@ -11,6 +11,11 @@ import './App.css';
 import { Card, CardColumns, CardText, CardBody, CardTitle, CardSubtitle, Button, Row, Col} from 'reactstrap';
 
 class App extends Component {
+  dateFormat(date) {
+    return date.replace(/(\d{4})-(\d{1,2})-(\d{1,2})/, function (match, y, m, d) {
+      return m + '/' + d + '/' + y
+    })
+  }
   render() {
     return (
       //credentials shown here are read only so no security issues
@@ -33,7 +38,7 @@ class App extends Component {
             borderColor: '#666',
           }
         }}>
-        <div className="navbar">
+        <div className="searchBar">
           <div className="logo">
             twttr<strong>claims</strong>
           </div>
@@ -55,11 +60,11 @@ class App extends Component {
                 return {
                   "multi_match": {
                     "query": value,
-                    "type": "best_fields",
+                    "type": "most_fields",
                     "fields": ["prefname^3", "speaker", "claim^2"],
                     "fuzziness": "AUTO",
                     "zero_terms_query": "all",
-                    "tie_breaker": 0.35
+                    "tie_breaker": 0.6
                   }
                 }
               }
@@ -123,8 +128,7 @@ class App extends Component {
                         <Card>
                           <CardBody>
                             <CardTitle>{res.prefname} - @{res.account.toString().toLowerCase()}</CardTitle>
-                            <CardSubtitle>{res.date.replace(/(\d{4})-(\d{1,2})-(\d{1,2})/, function (match, y, m, d) {
-                              return m + '/' + d + '/' + y})}</CardSubtitle>
+                            <CardSubtitle>{this.dateFormat(res.date)}</CardSubtitle>
                             <CardText style={{ marginTop: 0.5 + "em" }}>{res.claim}</CardText>
                             <Row>
                               <Col sm="6" md="6">

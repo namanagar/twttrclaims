@@ -4,13 +4,13 @@
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 10vw;
 }
 
 .App-header {
   background-color: #222;
-  height: 150px;
-  padding: 20px;
+  height: 20vw;
+  padding: 3vw;
   color: white;
 }
 
@@ -27,7 +27,7 @@
   to { transform: rotate(360deg); }
 }
 
-.navbar {
+.searchBar {
   width: 100%;
   position: fixed;
   top: 0;
@@ -37,13 +37,13 @@
   align-items: center;
   background-color: #1DA1F2;
   color: #fff;
-  height: 52px;
+  height: 4vmax;
   font-size: 15px;
   letter-spacing: 0.05rem;
 }
 
 .logo {
-  margin-left: 16px;
+  margin-left: 1.5vw;
   float: left;
 }
 
@@ -53,9 +53,10 @@
 }
 
 .datasearch .searchbox {
-  min-width: 400px;
-  border-radius: 30px;
-  padding: 5px 16px 5px 30px;
+  min-width: 39vw;
+  max-height: 3vw;
+  border-radius: 3vw;
+  padding: 1vw 3vw 1vw 5vw;
 }
 
 .suggestionlist {
@@ -66,13 +67,13 @@
 
 .display {
   display: flex;
-  margin-top: 60px;
+  margin-top: 6vw;
 }
 
 .leftSidebar {
-  width: 320px;
+  width: 25vw;
   height: 100%;
-  padding: 15px 20px;
+  padding: 1vw 1.5vw;
   position: fixed;
   left: 0;
   right: 0;
@@ -80,13 +81,57 @@
 }
 
 .mainBar {
-  width: calc(100% - 320px);
+  width: 70vw;
   position: relative;
-  left: 320px;
-  padding: 0px 30px;
+  left: 25vw;
+  padding: 0em 0.2em;
   background-color: #fefefe;
 }
 
 .results .resultpages .active {
   color: #fff !important;
+}
+
+@media (max-width:801px) { 
+  /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+  .leftSidebar{
+    width: 0vw;
+    display: none;
+  }
+  .mainBar{
+    width: 100vw;
+    position: fixed;
+    left: 0vw;
+  }
+  .datasearch .searchbox {
+    min-width: 50vw;
+    max-height: 5vw;
+    padding: 1vw 3vw 1vw 5vw;
+    font-size: .75em;
+  }
+  .display {
+    display: flex;
+    margin-top: 9vw;
+  }
+  .searchBar {
+    height: 6.5vw;
+  }
+}
+
+@media (max-width:481px) { 
+   /* smartphones, Android phones, landscape iPhone */
+  .datasearch .searchbox {
+    min-width: 75vw;
+    padding: 1vw 3vw 1vw 10vw;
+  }
+  .display {
+    margin-top: 10vw;
+    font-size: 10px;
+  }
+  .searchBar {
+    height: 7.5vw;
+  }
+  .logo {
+    display: none;
+  }
 }
