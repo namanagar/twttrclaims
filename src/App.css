@@ -87,7 +87,6 @@
   background-color: #fefefe;
 }
 
-.result-data .result-image {
-  background-size: cover;
-  max-height: 200px;
+.results .resultpages .active {
+  color: #fff !important;
 }

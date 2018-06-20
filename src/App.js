@@ -3,11 +3,12 @@ import {
   ReactiveBase,
   DataSearch,
   RangeSlider,
-  ResultList,
   MultiList,
-  DateRange
+  DateRange,
+  ReactiveList
 } from '@appbaseio/reactivesearch';
 import './App.css';
+import { Card, CardColumns, CardText, CardBody, CardTitle, CardSubtitle, Button, Row, Col} from 'reactstrap';
 
 class App extends Component {
   render() {
@@ -32,7 +33,6 @@ class App extends Component {
             borderColor: '#666',
           }
         }}>
-      >
         <div className="navbar">
           <div className="logo">
             twttr<strong>claims</strong>
@@ -44,7 +44,7 @@ class App extends Component {
             placeholder="Search by speaker and/or claim keywords"
             autosuggest={false}
             fuzziness={"AUTO"}
-            debounce={500}
+            debounce={200}
             className="datasearch"
             innerClass={{
               "input": "searchbox",
@@ -88,8 +88,11 @@ class App extends Component {
               componentId="dateFilter"
               dataField="date"
               title="Date Tweeted"
+              numberOfMonths={1}
+              queryFormat = "date"
             />
             <MultiList
+              style={{ marginTop: 1.5 + "em" }}
               componentId="speakerFilter"
               dataField="prefname.raw"
               title="Speakers"
@@ -100,33 +103,52 @@ class App extends Component {
             />
           </div>
           <div className={"mainBar"}>
-            <ResultList
+            <ReactiveList
               componentId="results"
+              className = "results"
+              innerClass = {{
+                "pagination": "resultpages"
+              }}
               dataField="prefname"
               react={{
                 "and": ["mainSearch", "ratingsFilter", "speakerFilter", "dateFilter"]
               }}
               pagination={true}
-              size={20}
-              onData={(res) => (
-                {
-                  "image": res.image,
-                  "title": res.prefname + " - @" + res.account.toString().toLowerCase(),
-                  "description": res.claim,
-                  "url": res.link
+              size={12}
+              onAllData={(results) =>
+                <div style={{ margin: 0.5 + "em" }}>
+                  <CardColumns>
+                    {results.map((res, index) =>
+                      <div style={{ margin: 0.25 + "em" }} key={index}>
+                        <Card>
+                          <CardBody>
+                            <CardTitle>{res.prefname} - @{res.account.toString().toLowerCase()}</CardTitle>
+                            <CardSubtitle>{res.date.replace(/(\d{4})-(\d{1,2})-(\d{1,2})/, function (match, y, m, d) {
+                              return m + '/' + d + '/' + y})}</CardSubtitle>
+                            <CardText style={{ marginTop: 0.5 + "em" }}>{res.claim}</CardText>
+                            <Row>
+                              <Col sm="6" md="6">
+                                <Button tag="a" outline color="primary" href={res.link}>Link</Button>
+                              </Col>
+                              <Col sm="6" md="6">
+                                <CardText>Score: {Number(res.score.toFixed(2))}</CardText>
+                              </Col>
+                            </Row>
+                          </CardBody>
+                        </Card>
+                      </div>
+                    )}
+                  </CardColumns>
+                </div>
                 }
-              )}
-              className="result-data"
-              innerClass={{
-                "image": "result-image",
-                "resultStats": "result-stats"
-              }}
               sortOptions={[
                 { dataField: "_score", sortBy: "desc", label: "Best Match" },
                 { dataField: "score", sortBy: "desc", label: "Claimbuster Score (High to low)" },
                 { dataField: "score", sortBy: "asc", label: "Claimbuster Score (Low to High)" },
                 { dataField: "prefname.raw", sortBy: "asc", label: "Speaker A->Z" },
                 { dataField: "prefname.raw", sortBy: "desc", label: "Speaker Z->A" },
+                { dataField: "date", sortBy: "desc", label: "Newest" },
+                { dataField: "date", sortBy: "asc", label: "Oldest" }
               ]}
             />
           </div>
