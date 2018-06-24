@@ -93,11 +93,12 @@
 }
 
 @media (max-width:801px) { 
-  /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+  /* tablet, landscape iPad, lo-res laptops ands desktops  
   .leftSidebar{
     width: 0vw;
     display: none;
   }
+  */
   .mainBar{
     width: 100vw;
     position: fixed;
@@ -112,6 +113,7 @@
   .display {
     display: flex;
     margin-top: 9vw;
+    font-size: 12px;
   }
   .searchBar {
     height: 6.5vw;
