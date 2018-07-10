@@ -9,7 +9,7 @@ import {
 } from '@appbaseio/reactivesearch';
 import './App.css';
 import { Card, CardColumns, CardText, CardBody, CardTitle, CardSubtitle, Button, Row, Col, Modal, ModalHeader, ModalBody} from 'reactstrap';
-import MediaQuery from 'react-responsive';
+import MediaQuery from 'react-responsive';  
 
 class App extends Component {
   constructor(props) {
@@ -86,9 +86,10 @@ class App extends Component {
           <div className="about">
             <Button color="info" size="sm" onClick={this.toggle}>about this app</Button>
             <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-              <ModalHeader toggle={this.toggle}>Product of the Duke Reporters' Lab</ModalHeader>
+              <ModalHeader toggle={this.toggle}>About twttr<strong>claims</strong></ModalHeader>
               <ModalBody>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Tech & Check Alerts is an automated service that helps fact-checkers find claims to check. Using the ClaimBuster tool — an algorithm that scores sentences based on how checkable they are — we've collected several politicians' tweets and scored and saved them here. This database of claims from Twitter includes all claims previously sent through our email alert program and more.</p>
+                <p>For more information about Tech & Check or the Duke Reporters' Lab, click <a href="https://reporterslab.org/">here</a> to find out more.</p>
               </ModalBody>
             </Modal>
           </div>
