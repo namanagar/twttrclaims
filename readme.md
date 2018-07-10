@@ -8,3 +8,4 @@ For more information about Tech & Check or the Duke Reporters' Lab, click [here.
 
 ## Technical info
 
+This project was built with React, ElasticSearch, and appbase.io's UI component library [ReactiveSearch](https://opensource.appbase.io/reactivesearch/) along with [reactstrap](https://opensource.appbase.io/reactivesearch/).
