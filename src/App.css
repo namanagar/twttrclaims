@@ -35,7 +35,7 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  background-color: #1DA1F2;
+  background-color: #004c93;
   color: #fff;
   height: 4vmax;
   font-size: 15px;
@@ -45,6 +45,11 @@
 .logo {
   margin-left: 1.5vw;
   float: left;
+}
+
+.about{
+  margin-right: 2vw;
+  z-index: 99;
 }
 
 .datasearch {

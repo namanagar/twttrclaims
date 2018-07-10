@@ -8,10 +8,22 @@ import {
   ReactiveList
 } from '@appbaseio/reactivesearch';
 import './App.css';
-import { Card, CardColumns, CardText, CardBody, CardTitle, CardSubtitle, Button, Row, Col} from 'reactstrap';
+import { Card, CardColumns, CardText, CardBody, CardTitle, CardSubtitle, Button, Row, Col, Modal, ModalHeader, ModalBody} from 'reactstrap';
 import MediaQuery from 'react-responsive';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false
+    };
+    this.toggle = this.toggle.bind(this);
+  }
+  toggle() {
+    this.setState({
+      modal: !this.state.modal
+    });
+  }
   dateFormat(date) {
     return date.replace(/(\d{4})-(\d{1,2})-(\d{1,2})/, function (match, y, m, d) {
       return m + '/' + d + '/' + y
@@ -33,7 +45,7 @@ class App extends Component {
             textColor: '#14171A',
             backgroundColor: '#E1E8ED',
             primaryTextColor: '#fff',
-            primaryColor: '#2196F3',
+            primaryColor: '#004c93',
             titleColor: '#14171A',
             alertColor: '#d9534f',
             borderColor: '#666',
@@ -50,7 +62,7 @@ class App extends Component {
             placeholder="Search by speaker and/or claim keywords"
             autosuggest={false}
             fuzziness={"AUTO"}
-            debounce={200}
+            debounce={250}
             className="datasearch"
             innerClass={{
               "input": "searchbox",
@@ -71,6 +83,15 @@ class App extends Component {
               }
             }
           />
+          <div className="about">
+            <Button color="info" size="sm" onClick={this.toggle}>about this app</Button>
+            <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+              <ModalHeader toggle={this.toggle}>Product of the Duke Reporters' Lab</ModalHeader>
+              <ModalBody>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </ModalBody>
+            </Modal>
+          </div>
         </div>
         <div className={"display"}>
           <MediaQuery minWidth={801} >
