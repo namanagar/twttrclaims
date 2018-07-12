@@ -172,7 +172,7 @@ class App extends Component {
                   </div>
                 }
                 sortOptions={[
-                  { dataField: "_score", sortBy: "desc", label: "Best Match" },
+                  { dataField: "_score", sortBy: "desc", label: "Relevance" },
                   { dataField: "score", sortBy: "desc", label: "Claimbuster Score (High to low)" },
                   { dataField: "score", sortBy: "asc", label: "Claimbuster Score (Low to High)" },
                   { dataField: "prefname.raw", sortBy: "asc", label: "Speaker A->Z" },
@@ -223,7 +223,7 @@ class App extends Component {
                   </div>
                 }
                 sortOptions={[
-                  { dataField: "_score", sortBy: "desc", label: "Best Match" },
+                  { dataField: "_score", sortBy: "desc", label: "Relevance" },
                   { dataField: "score", sortBy: "desc", label: "Claimbuster Score (High to low)" },
                   { dataField: "score", sortBy: "asc", label: "Claimbuster Score (Low to High)" },
                   { dataField: "prefname.raw", sortBy: "asc", label: "Speaker A->Z" },
@@ -276,7 +276,7 @@ class App extends Component {
                   </div>
                 }
                 sortOptions={[
-                  { dataField: "_score", sortBy: "desc", label: "Best Match" },
+                  { dataField: "_score", sortBy: "desc", label: "Relevance" },
                   { dataField: "score", sortBy: "desc", label: "Claimbuster Score (High to low)" },
                   { dataField: "score", sortBy: "asc", label: "Claimbuster Score (Low to High)" },
                   { dataField: "prefname.raw", sortBy: "asc", label: "Speaker A->Z" },
