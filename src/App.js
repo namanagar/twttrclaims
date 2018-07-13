@@ -71,13 +71,24 @@ class App extends Component {
             customQuery={
               function (value, props) {
                 return {
-                  "multi_match": {
-                    "query": value,
-                    "type": "most_fields",
-                    "fields": ["prefname^3", "speaker", "claim^2"],
-                    "fuzziness": "AUTO",
-                    "zero_terms_query": "all",
-                    "tie_breaker": 0.6
+                  "query": {
+                    "function_score": {
+                      "query": {
+                        "multi_match": {
+                          "query": value,
+                          "type": "most_fields",
+                          "fields": ["prefname^3", "speaker", "claim^2"],
+                          "fuzziness": "AUTO",
+                          "zero_terms_query": "all",
+                          "tie_breaker": 0.6
+                        }
+                      },
+                      "exp": {
+                        "date": {
+                          "scale": "8w"
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -172,7 +183,7 @@ class App extends Component {
                   </div>
                 }
                 sortOptions={[
-                  { dataField: "_score", sortBy: "desc", label: "Relevance" },
+                  { dataField: "_score", sortBy: "desc", label: "Search Results" },
                   { dataField: "score", sortBy: "desc", label: "Claimbuster Score (High to low)" },
                   { dataField: "score", sortBy: "asc", label: "Claimbuster Score (Low to High)" },
                   { dataField: "prefname.raw", sortBy: "asc", label: "Speaker A->Z" },
@@ -223,7 +234,7 @@ class App extends Component {
                   </div>
                 }
                 sortOptions={[
-                  { dataField: "_score", sortBy: "desc", label: "Relevance" },
+                  { dataField: "_score", sortBy: "desc", label: "Search Results" },
                   { dataField: "score", sortBy: "desc", label: "Claimbuster Score (High to low)" },
                   { dataField: "score", sortBy: "asc", label: "Claimbuster Score (Low to High)" },
                   { dataField: "prefname.raw", sortBy: "asc", label: "Speaker A->Z" },
@@ -276,7 +287,7 @@ class App extends Component {
                   </div>
                 }
                 sortOptions={[
-                  { dataField: "_score", sortBy: "desc", label: "Relevance" },
+                  { dataField: "_score", sortBy: "desc", label: "Search Results" },
                   { dataField: "score", sortBy: "desc", label: "Claimbuster Score (High to low)" },
                   { dataField: "score", sortBy: "asc", label: "Claimbuster Score (Low to High)" },
                   { dataField: "prefname.raw", sortBy: "asc", label: "Speaker A->Z" },
