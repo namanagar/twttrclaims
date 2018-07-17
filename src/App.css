@@ -2,11 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 10vw;
-}
-
 .App-header {
   background-color: #222;
   height: 20vw;
@@ -20,11 +15,6 @@
 
 .App-intro {
   font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 .searchBar {
@@ -47,11 +37,18 @@
   float: left;
 }
 
+.logo-pic{
+  max-width: 5vmax;
+  max-height: 4vmax;
+}
 .about{
   margin-right: 2vw;
   z-index: 99;
 }
-
+.about-logo{
+  max-width: 10vmax;
+  max-height: 10vmax;
+}
 .datasearch {
   margin-left: auto;
   margin-right: auto;

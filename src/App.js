@@ -10,6 +10,7 @@ import {
 import './App.css';
 import { Card, CardColumns, CardText, CardBody, CardTitle, CardSubtitle, Button, Row, Col, Modal, ModalHeader, ModalBody} from 'reactstrap';
 import MediaQuery from 'react-responsive';  
+import logoPic from './logo.png';
 
 class App extends Component {
   constructor(props) {
@@ -52,6 +53,7 @@ class App extends Component {
           }
         }}>
         <div className="searchBar">
+          <img src={logoPic} class="logo-pic" />
           <div className="logo">
             twttr<strong>claims</strong>
           </div>
@@ -101,6 +103,7 @@ class App extends Component {
               <ModalBody>
                 <p>Tech & Check Alerts is an automated service that helps fact-checkers find claims to check. Using the ClaimBuster tool — an algorithm that scores sentences based on how checkable they are — we've collected several politicians' tweets and scored and saved them here. This database of claims from Twitter includes all claims previously sent through our email alert program and more.</p>
                 <p>For more information about Tech & Check or the Duke Reporters' Lab, click <a href="https://reporterslab.org/">here</a> to find out more.</p>
+                <img src={logoPic} class="about-logo"/>
               </ModalBody>
             </Modal>
           </div>
